@@ -1,0 +1,181 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "evaluation",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/submissions": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Submit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/evaluation": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEvaluation"
+              },
+              "examples": {
+                "response": {
+                  "value": {
+                    "activity": 69,
+                    "note": 78
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evaluation"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "id": 35,
+                      "activity": 54,
+                      "note": 90
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Submit": {
+        "title": "Root Type for Submit",
+        "description": "",
+        "required": [
+          "createdAt",
+          "alunoId",
+          "atividadeId",
+          "id",
+          "resposta"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "alunoId": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "atividadeId": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "resposta": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": 1,
+          "alunoId": 1,
+          "atividadeId": 1,
+          "resposta": "com muita oração",
+          "createdAt": 1664506041.251562
+        }
+      },
+      "Evaluation": {
+        "title": "Root Type for Evaluation",
+        "description": "",
+        "required": [
+          "activity",
+          "id",
+          "note",
+          "submission"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "activity": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "note": {
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "submission": {
+            "format": "int64",
+            "description": "",
+            "type": "integer"
+          }
+        },
+        "example": {
+          "id": 0,
+          "activity": 22,
+          "note": 10,
+          "submission": 81
+        }
+      },
+      "CreateEvaluation": {
+        "title": "Root Type for CreateEvaluation",
+        "description": "",
+        "required": [
+          "activity",
+          "note",
+          "submission"
+        ],
+        "type": "object",
+        "properties": {
+          "activity": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "note": {
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "submission": {
+            "format": "int64",
+            "description": "",
+            "type": "integer"
+          }
+        },
+        "example": {
+          "activity": 1,
+          "note": 10,
+          "submission": 1
+        }
+      }
+    }
+  }
+}
